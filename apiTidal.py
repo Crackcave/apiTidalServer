@@ -16,7 +16,7 @@ def authenticate():
 	data = {'tidal_session_id': conn.session_id, 'tidal_key': conn.access_token, 'tidal_token_type': conn.token_type }
 	db = connect()
 	cursor = db.cursor()
-	cursor.execute("INSERT INTO tidalApi (session,tidal_key,type) VALUES (?, ?, ?)", (conn.session_id, conn.access_token, conn.token_type))
+	cursor.execute("INSERT INTO tidalApi (session,tidal_key,type) VALUES (%s, %s, %s)", (conn.session_id, conn.access_token, conn.token_type))
 	db.commit()
 	return json.dumps(data)
 

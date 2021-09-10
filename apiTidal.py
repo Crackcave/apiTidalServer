@@ -1,7 +1,7 @@
 from flask import Flask, json, session, request
 import tidalapi
 from IPython import embed
-import mariadb
+import mysql.connector
 import sys
 
 
@@ -52,7 +52,7 @@ def get_client():
 	return conn
 
 def  connect():
-	return mariadb.connect(
+	return mysql.connector.connect(
 		user="root",
 		password="root",
 		host="127.0.0.1",

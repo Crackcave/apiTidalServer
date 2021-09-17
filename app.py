@@ -1,8 +1,6 @@
 from flask import Flask, json, session, request
 import tidalapi
-from IPython import embed
 import mysql.connector
-import sys
 
 
 
@@ -55,10 +53,10 @@ def  connect():
 	return mysql.connector.connect(
 		user="root",
 		password="root",
-		host="127.0.0.1",
+		host="mariadb",
 		port=3306,
 		database="rauschpflicht"
 	)
 
 if __name__ == '__main__':
-	api.run()
+	api.run(host='0.0.0.0', port=5222)

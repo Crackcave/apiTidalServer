@@ -36,7 +36,7 @@ def add_track_to_favorite():
 	conn = get_client()
 	name = request.args.get('track')
 	playlist = conn.user.favorites.add_track(name)
-	return json.dumps(['works'])
+	return json.dumps({'name': name})
 
 
 

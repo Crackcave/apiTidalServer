@@ -34,9 +34,10 @@ def get_tracks():
 @api.route('/addTrack', methods=['GET'])
 def add_track_to_favorite():
 	conn = get_client()
-	name = request.args.get('track')
-	playlist = conn.user.favorites.add_track(name)
-	return json.dumps({'name': name})
+	track_id = request.args.get('track')
+	conn.user.favorites.add_track(track_id)
+	track = conn.get_track(track_id)
+	return json.dumps({'name': track.name, 'trackId': track_id, 'artist': track.artist.name})
 
 
 

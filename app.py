@@ -37,7 +37,15 @@ def add_track_to_favorite():
 	track_id = request.args.get('track')
 	conn.user.favorites.add_track(track_id)
 	track = conn.get_track(track_id)
-	return json.dumps({'name': track.name, 'trackId': track_id, 'artist': track.artist.name})
+	image = None
+	if track.album is not None:
+		image = track.album.image
+	return json.dumps({
+		'name': track.name,
+		'trackId': track_id,
+		'artist': track.artist.name,
+		'image': image
+	})
 
 
 

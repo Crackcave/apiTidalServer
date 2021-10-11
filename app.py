@@ -25,9 +25,16 @@ def get_tracks():
 	name = request.args.get('name')
 	result = conn.search('track', name)
 	tracks = []
-	index = 0
 	for track in result.tracks:
-		tracks.append({'id': track.id, 'name': track.name, 'duration': track.duration, 'artist': track.artist.name, 'album': track.album.name, 'available': track.available})
+		tracks.append({
+			'id': track.id,
+			'name': track.name,
+			'duration': track.duration,
+			'artist': track.artist.name,
+			'album': track.album.name,
+			'image': track.album.image,
+			'available': track.available
+		})
 	return json.dumps(tracks)
 
 
